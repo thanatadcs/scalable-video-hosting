@@ -1,0 +1,96 @@
+@font-face {
+    font-family: Neon-Regular;
+    src: url('/font/MonaspaceNeon-Regular.woff');
+}
+
+@font-face {
+    font-family: Neon-Light;
+    src: url('/font/MonaspaceNeon-Light.woff');
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    font-family: Neon-Light;
+}
+
+header {
+    margin: 20px;
+}
+
+table {
+    width: 750px;
+    border-collapse: collapse;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+td {
+    text-align: center;
+}
+
+.growing-body {
+    height: unset;
+    height: unset;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.container {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.h-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.video {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    padding: 5em;
+    border-bottom: 1px solid rgb(218, 209, 209);
+}
+
+.menu {
+    margin: 0px 15px;
+    text-decoration: none;
+    color: black;
+    font-family: Neon-Regular;
+}
+
+.menu:hover {
+    color: blueviolet;
+}
+
+.ready-video-row {
+    background-color: #ADD495;
+}
+
+.never-ready-video-row {
+    background-color: #FF8080;
+}
+
+.upload-element {
+    margin: 20px 20px;
+}
+
+#video-list {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
