@@ -26,6 +26,7 @@ POSTGRES_PASSWORD=<YOUR_VALUE>
 docker compose up
 ```
 ## Run with Kubernetes
+### Requirement
 - A Kubernetes cluster (this application is tested with [Kubernetes on Docker Desktop](https://docs.docker.com/desktop/kubernetes/))
 - AWS S3
 ### Setup
