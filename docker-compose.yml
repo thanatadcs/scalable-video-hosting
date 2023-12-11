@@ -23,7 +23,9 @@ services:
       - "data-volume:/var/lib/postgresql/data"
 
   frontend:
-    build: ./scalable-video-hosting-frontend
+    build:
+      context: ./scalable-video-hosting-frontend
+      dockerfile: compose.Dockerfile
     ports:
       - "8080:80"
     depends_on:
