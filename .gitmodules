@@ -4,3 +4,6 @@
 [submodule "scalable-video-hosting-worker"]
 	path = scalable-video-hosting-worker
 	url = git@github.com:thanatadcs/scalable-video-hosting-worker.git
+[submodule "scalable-video-hosting-frontend"]
+	path = scalable-video-hosting-frontend
+	url = git@github.com:thanatadcs/scalable-video-hosting-frontend.git
