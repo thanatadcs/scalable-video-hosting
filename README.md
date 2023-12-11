@@ -4,6 +4,7 @@ A scalable video hosting application to upload and stream video.
 You can run this application with either `Docker Compose` or `Kubernetes`.
 
 **Note:** [*ffmpeg* executable](https://www.ffmpeg.org/download.html) used in video processing worker is for arm64 macOS machine. You might need to change ffmpeg to the version that support your machine.
+
 **Note2:** Do not forget to properly setup CORS in AWS S3.
 ## Run with Docker Compose
 ### Requirement
