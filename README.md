@@ -3,13 +3,16 @@ A scalable video hosting application to upload and stream video.
 
 You can run this application with either `Docker Compose` or `Kubernetes`.
 
-**Note:** [*ffmpeg*](https://www.ffmpeg.org/download.html) executable used in video processing worker is for arm64 macOS machine. You might need to change ffmpeg to the version that support your machine.
+> [!NOTE]
+> [*ffmpeg*](https://www.ffmpeg.org/download.html) executable used in video processing worker is for arm64 macOS machine. You might need to change ffmpeg to the version that support your machine.
 
-**Note 2:** Do not forget to properly setup CORS in AWS S3.
 ## Run with Docker Compose
 ### Requirement
 - [Docker Desktop](https://docs.docker.com/desktop/) (or alike)
 - AWS S3
+> [!IMPORTANT]
+> Do not forget to properly setup CORS in AWS S3.
+
 ### Setup
 #### Submodule
 Because of [git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules), all the inner folders are empty and you needs all the file to run with docker compose (this is by design to test local code).
@@ -43,6 +46,10 @@ docker compose up
 ### Requirement
 - A Kubernetes cluster (this application is tested with [Kubernetes on Docker Desktop](https://docs.docker.com/desktop/kubernetes/))
 - AWS S3
+
+> [!IMPORTANT]
+> Do not forget to properly setup CORS in AWS S3.
+
 ### Setup
 You will need ingress controller as well as some Kubernetes secrets and configMaps.
 #### Ingress Controller
