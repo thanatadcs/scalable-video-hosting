@@ -1,2 +1,4 @@
 *.env
 .idea
+k8s/*-secret.yml
+k8s/*-config.yml
