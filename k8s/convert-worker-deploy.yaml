@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: svh-convert-worker
+  name: svh-convert-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: svh-convert-worker
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: svh-convert-worker
+    spec:
+      containers:
+      - image: ghcr.io/thanatadcs/scalable-video-hosting-worker:latest
+        name: scalable-video-hosting-worker
+        resources: {}
+        env:
+          - name: WORKER_TYPE
+            value: "convert"
+        envFrom:
+          - configMapRef:
+              name: s3-config
+          - secretRef:
+              name: s3-secret
+          - configMapRef:
+              name: hostname-config
+status: {}
