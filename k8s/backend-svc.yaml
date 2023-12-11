@@ -3,16 +3,16 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    app: postgres
-  name: postgres
+    app: svh-backend
+  name: svh-backend
 spec:
   ports:
-  - name: 5432-5432
-    port: 5432
-      #protocol: TCP
-    targetPort: 5432
+  - name: 8080-8080
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
   selector:
-    app: postgres
+    app: svh-backend
   type: ClusterIP
 status:
   loadBalancer: {}

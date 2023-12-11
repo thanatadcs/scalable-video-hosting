@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: svh-backend
+  name: svh-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: svh-backend
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: svh-backend
+    spec:
+      containers:
+      - image: ghcr.io/thanatadcs/scalable-video-hosting-backend:latest
+        name: scalable-video-hosting-backend
+        resources: {}
+        envFrom:
+          - configMapRef:
+              name: postgres-config
+          - secretRef:
+              name: postgres-secret
+          - configMapRef:
+              name: s3-config
+          - secretRef:
+              name: s3-secret
+          - configMapRef:
+              name: hostname-config
+status: {}
