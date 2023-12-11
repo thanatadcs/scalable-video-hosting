@@ -17,6 +17,10 @@ spec:
       labels:
         app: postgres
     spec:
+      volumes:
+        - name: pvc
+          persistentVolumeClaim:
+            claimName: pvc
       containers:
       - image: postgres:16
         name: postgres
@@ -26,4 +30,7 @@ spec:
               name: postgres-config
           - secretRef:
               name: postgres-secret
+        volumeMounts:
+          - mountPath: "/var/lib/postgresql/data"
+            name: pvc
 status: {}
