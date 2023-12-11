@@ -50,6 +50,7 @@
             e.preventDefault();
             isUploading = true;
 
+            clearText();
             displayText('Uploading...');
 
             const [url, uuid] = await getUploadTicket();
@@ -67,7 +68,17 @@
 
         function displayText(text) {
             const div = document.getElementsByClassName('center').item(0);
-            div.appendChild(createElement('p', text));
+            const p = createElement('p', text);
+            p.className = 'notify-upload';
+            div.appendChild(p);
+        }
+
+        function clearText() {
+            const div = document.getElementsByClassName('center').item(0);
+            const texts = document.getElementsByClassName('notify-upload');
+            for (let i=0;i<texts.length;i++) {
+                div.removeChild(texts.item(i));
+            }
         }
 
         async function getUploadTicket() {

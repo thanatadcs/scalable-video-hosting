@@ -26,23 +26,42 @@
 <script src="https://vjs.zencdn.net/8.6.1/video.min.js"></script>
 <script>
     {
-        const playerObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) entry.target.play();
-                else entry.target.pause();
-            })
-        }, {threshold: 0.5});
 
         getAllReadyVideo().then(videos => populateVideoList(videos));
 
         function populateVideoList(videos) {
+            const playerObserver = createPlayerObserver();
+
             const videoListDiv = document.getElementById("video-list");
             videos.forEach(async video => {
                 const videoDiv = createVideoDiv(video);
                 videoListDiv.appendChild(videoDiv);
                 await loadVideo(video['uuid']);
-                playerObserver.observe(videoDiv.querySelector('video'));
+
+                const videoPlayer = videoDiv.querySelector('video')
+                playerObserver.observe(videoPlayer);
             });
+        }
+
+        function createPlayerObserver() {
+            return new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        let playPromise = entry.target.play();
+
+                        if (playPromise !== undefined) {
+                            playPromise.then(_ => {
+                                // Automatic playback started!
+                                // Show playing UI.
+                            })
+                            .catch(error => {
+                                // Auto-play was prevented
+                                // Show paused UI.
+                            });
+                        }
+                    } else entry.target.pause();
+                })
+            }, {threshold: 0.5});
         }
 
         function createVideoDiv(video) {
@@ -65,19 +84,42 @@
             const template = document.createElement('template');
 
             template.innerHTML = `
-            <video id="uuid-${uuid}" controls muted preload="none" class="video-js" width="400" height="300" data-setup="{}"></video>
+            <video id="uuid-${uuid}" loop controls muted preload="none" class="video-js" width="400" height="300" data-setup="{}"></video>
             `;
             return template;
         }
 
         async function loadVideo(uuid) {
             const videoUrl = videoApiUrl + '/' + uuid;
-            const vjs = videojs("uuid-" + uuid);
+
+            const options = {
+                plugins: {
+                    reloadSourceOnError: {}
+                },
+                html5: {
+                    vhs: {
+                        overrideNative: true
+                    },
+                    nativeAudioTracks: false,
+                    nativeVideoTracks: false
+                }
+            };
+            const vjs = videojs("uuid-" + uuid, options);
+            window.videojs.log.level('off');
             const thumbnailUrl = await getThumbnailUrl(uuid);
             vjs.poster(thumbnailUrl);
             vjs.src([
-                {type: "application/x-mpegURL", src: videoUrl + "/playlist.m3u8"} // safari need '.m3u8' for video.src to infer type
+                {type: "application/x-mpegURL", src: videoUrl + "/playlist.m3u8"}
             ]);
+            vjs.tech().on('retryplaylist', () => {
+                console.log('Reloading source');
+                const time = vjs.currentTime();
+                vjs.src([
+                    {type: "application/x-mpegURL", src: videoUrl + "/playlist.m3u8"} // safari need '.m3u8' for video.src to infer type
+                ]);
+                vjs.play();
+                vjs.currentTime(time);
+            });
         }
 
         async function getThumbnailUrl(uuid) {
