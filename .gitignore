@@ -1,4 +1,4 @@
 *.env
 .idea
 k8s/*-secret.yaml
-k8s/*-config.yaml
+k8s/s3-config.yaml
