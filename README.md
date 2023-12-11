@@ -4,6 +4,7 @@ A scalable video hosting application to upload and stream video.
 You can run this application with either `Docker Compose` or `Kubernetes`.
 
 **Note:** [*ffmpeg* executable](https://www.ffmpeg.org/download.html) used in video processing worker is for arm64 macOS machine. You might need to change ffmpeg to the version that support your machine.
+**Note2:** Do not forget to properly setup CORS in AWS S3.
 ## Run with Docker Compose
 ### Requirement
 - [Docker Desktop](https://docs.docker.com/desktop/) (or alike)
@@ -43,15 +44,15 @@ kubectl create secret generic s3-secret \
 --from-literal=AWS_SECRET_ACCESS_KEY=<YOUR_VALUE> \
 --dry-run=client -o yaml > s3-secret.yaml
 
-kubectl create secret generic postgres-secret \
---from-literal=POSTGRES_USER=<YOUR_VALUE> \
---from-literal=POSTGRES_PASSWORD=<YOUR_VALUE> \
---dry-run=client -o yaml > postgres-secret.yaml
-
 kubectl create configmap s3-config \
 --from-literal=AWS_REGION=<YOUR_VALUE> \
 --from-literal=S3_BUCKET=<YOUR_VALUE> \
 --dry-run=client -o yaml > s3-config.yaml
+
+kubectl create secret generic postgres-secret \
+--from-literal=POSTGRES_USER=<YOUR_VALUE> \
+--from-literal=POSTGRES_PASSWORD=<YOUR_VALUE> \
+--dry-run=client -o yaml > postgres-secret.yaml
 ```
 ### Running
 ```sh
