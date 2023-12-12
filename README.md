@@ -9,7 +9,7 @@ You can run this application with either `Docker Compose` or `Kubernetes`.
 ## Run with Docker Compose
 ### Requirement
 - [Docker Desktop](https://docs.docker.com/desktop/) (or alike)
-- AWS S3
+- [AWS S3](https://aws.amazon.com/pm/serv-s3/)
 > [!IMPORTANT]
 > Do not forget to properly setup [CORS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManageCorsUsing.html) in AWS S3.
 
