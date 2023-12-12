@@ -1,6 +1,24 @@
 # scalable-video-hosting
-A scalable video hosting application to upload and stream video.
+A scalable video hosting application to upload and stream video using [HLS protocol](https://developer.apple.com/streaming/). 
 
+The scalability comes from microservice architecture which allow us to scale different software components such as backend and video processing worker independently.
+
+## Architecture
+This application is based on microservice architecture where the main components are frontend, backend, and 3 different video processing workers. We used [PostgreSQL](https://www.postgresql.org/) as a database for backend to store video information and [Redis](https://redis.io/) as a message queue to communicate with the video processing workers. 
+
+[AWS S3](https://aws.amazon.com/pm/serv-s3/) (S3 for short) is used as a video storage. Video uploading is offload to S3 by letting client upload directly to it. Video streaming is done by sending playlist file from backend to client where each video segment will be fetch from S3 by the client.
+
+There are 3 types of video processing worker:
+- Convert worker: Transcoding video into HLS compatible format (H.264) and configure [GOP](https://en.wikipedia.org/wiki/Group_of_pictures) size for easy chunking.
+- Thumbnail worker: Extract the first frame of the video to be the thumbnail.
+- Chunk worker: Divide video into segments (10 seconds each) and create playlist ([.m3u8](https://en.wikipedia.org/wiki/M3U)) file.
+
+Below is a diagram for overall architecture
+<p align="center">
+  <img src="https://github.com/thanatadcs/scalable-video-hosting/assets/92204653/8c6235f3-ce11-4587-bca3-264e6e78ea72" width="650">
+</p>
+
+## Running
 You can run this application with either `Docker Compose` or `Kubernetes`.
 
 > [!NOTE]
