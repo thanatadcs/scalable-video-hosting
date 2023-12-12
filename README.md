@@ -4,7 +4,7 @@ A scalable video hosting application to upload video and [HLS](https://developer
 The scalability comes from microservice architecture which allow us to scale different software components such as backend and video processing worker independently.
 
 ## Architecture
-This application is based on microservice architecture where the main components are frontend, backend, and 3 different video processing workers. We used [PostgreSQL](https://www.postgresql.org/) as a database for backend to store video information and [Redis](https://redis.io/) as a message queue to communicate with the video processing workers. 
+This application is based on microservice architecture where the main components are frontend, backend, and 3 different types of video processing worker. We used [PostgreSQL](https://www.postgresql.org/) as a database for backend to store video information and [Redis](https://redis.io/) as a message queue to communicate with the video processing workers. 
 
 [AWS S3](https://aws.amazon.com/pm/serv-s3/) (S3 for short) is used as a video storage. Video uploading is offload to S3 by letting client upload directly to it. Video streaming is done by sending playlist file from backend to client where each video segment will be fetch from S3 by the client.
 
