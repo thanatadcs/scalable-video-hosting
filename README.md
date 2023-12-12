@@ -13,6 +13,8 @@ There are 3 types of video processing worker:
 - Thumbnail worker: Extract the first frame of the video to be the thumbnail.
 - Chunk worker: Divide video into segments (10 seconds each) and create playlist ([.m3u8](https://en.wikipedia.org/wiki/M3U)) file.
 
+All type of worker always fetch input video from S3, process it, then upload the result back to S3.
+
 Below is a diagram for overall architecture
 <p align="center">
   <img src="https://github.com/thanatadcs/scalable-video-hosting/assets/92204653/8c6235f3-ce11-4587-bca3-264e6e78ea72" width="650">
