@@ -1,5 +1,5 @@
 # scalable-video-hosting
-A scalable video hosting application to upload and stream video using [HLS protocol](https://developer.apple.com/streaming/). 
+A scalable video hosting application to upload video and streaming using [HLS protocol](https://developer.apple.com/streaming/). 
 
 The scalability comes from microservice architecture which allow us to scale different software components such as backend and video processing worker independently.
 
