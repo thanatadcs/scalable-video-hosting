@@ -17,7 +17,7 @@ All type of worker always fetch input video from S3, process it using [ffmpeg](h
 
 Below is a diagram for overall architecture
 <p align="center">
-  <img src="https://github.com/thanatadcs/scalable-video-hosting/assets/92204653/8c6235f3-ce11-4587-bca3-264e6e78ea72" width="650">
+  <img src="https://github.com/thanatadcs/scalable-video-hosting/assets/92204653/8c6235f3-ce11-4587-bca3-264e6e78ea72" width="800">
 </p>
 
 ## Running
