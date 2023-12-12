@@ -21,6 +21,8 @@ services:
       - "5432:5432" # For testing
     volumes:
       - "data-volume:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_DB: video
 
   frontend:
     build:
