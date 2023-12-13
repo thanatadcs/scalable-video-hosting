@@ -71,7 +71,7 @@ docker compose up
 > Do not forget to properly setup [CORS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManageCorsUsing.html) in AWS S3.
 
 ### Setup
-You will need ingress controller as well as some Kubernetes secrets and configMaps.
+You will need ingress controller and some Kubernetes secrets ,and configMaps. You also need to configure `hostPath` for persistent volume.
 #### Ingress Controller
 You need ingress controller setup for this. If you don't have ingress controller setup yet, you can use [Helm](https://helm.sh/docs/intro/install/) to install [Traefik](https://doc.traefik.io/traefik/getting-started/install-traefik/) or alike, refer to https://doc.traefik.io/traefik/getting-started/install-traefik/#use-the-helm-chart.
 #### Configuration
