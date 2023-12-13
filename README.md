@@ -92,6 +92,13 @@ kubectl create secret generic postgres-secret \
 --from-literal=POSTGRES_PASSWORD=<YOUR_VALUE> \
 --dry-run=client -o yaml > postgres-secret.yaml
 ```
+You also need to configure `hostPath` for persistent volume in `k8s/pv.yaml`
+```yaml
+hostPath:
+    path: "/Users/sai/data" # Configure your own path here
+```
+> [!NOTE]
+> Make sure that the path you configure for persistent volume exist on your machines
 ### Running
 In the `k8s` folder use this command
 ```sh
