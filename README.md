@@ -24,7 +24,7 @@ Below is a diagram for overall architecture
 You can run this application with either `Docker Compose` or `Kubernetes`.
 
 > [!NOTE]
-> [*ffmpeg*](https://www.ffmpeg.org/download.html) executable used in video processing worker is for arm64 macOS machine. You might need to change ffmpeg to the version that support your machine.
+> [*ffmpeg*](https://www.ffmpeg.org/download.html) executable used in video processing worker is for arm64 machine. You might need to change ffmpeg to the version that support your machine.
 
 ## Run with Docker Compose
 ### Requirement
